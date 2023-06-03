@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>equpie</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">EQUPIE rents</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="home">HOME</a></li>
+        <li class="active"><a href="userid">CART</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<style>
+.card {
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.10s;
+  width: 20%;
+  float:left;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 6px 16px;
+}
+</style>
+
+<h2 align="center">SHOP</h2>
+
+<table >
+  {% for i in data %}
+     <form method="post" action="bill" enctype="multipart/form-data">
+        {% csrf_token %}
+         <div class="card">
+             <img src="{{i.image.url}}" width="200" height="200"><br>
+    <input type="text" name="pname" value="{{i.pname}}" readonly><br>
+    PER DAY:<input type="number" name="rent" value="{{i.rent}}" readonly><br>
+             <h6>details<br>{{i.detail}} <br></h6>
+
+
+    <button>TAKE</button><br>
+         </div>
+     </form>
+</table>
+                {% endfor %}
+</body>
+</html>
